@@ -1,7 +1,14 @@
-var myElement = document.querySelector("body");
+var myElement = document.querySelector("html");
 
 var bodPull = new Hammer(myElement);
 
-bodPull.on("tap press", function(ev) {
-    console.log("Gesture detected");
+bodPull.add(new Hammer.Press({
+  event: 'press',
+  pointer: 1,
+  threshold: 50000,
+  time: 100
+}));
+
+bodPull.on('press', function(event) {
+  console.log("press detected", event.deltaY, event.distance, event.velocity);
 });
